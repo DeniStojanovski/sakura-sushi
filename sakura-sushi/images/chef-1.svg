@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="t">
+  <title id="t">Portrait medallion of Chef Hiroshi Tanaka, wearing a tall chef's toque</title>
+  <circle cx="60" cy="60" r="58" fill="#F6EFE3"/>
+  <circle cx="60" cy="60" r="58" fill="none" stroke="#C1547A" stroke-width="2.5"/>
+  <circle cx="60" cy="60" r="52" fill="none" stroke="#C1547A" stroke-width="1" opacity="0.5"/>
+  <path d="M34 96 Q60 78 86 96 L86 108 L34 108 Z" fill="#2E2925"/>
+  <circle cx="60" cy="64" r="24" fill="#E2A97E"/>
+  <path d="M40 56 Q60 44 80 56 L79 50 Q60 40 41 50 Z" fill="#3A3330"/>
+  <rect x="40" y="30" width="40" height="22" rx="8" fill="#FBF7EF" stroke="#2E2925" stroke-width="2"/>
+  <path d="M42 30 Q60 6 78 30" fill="#FBF7EF" stroke="#2E2925" stroke-width="2"/>
+</svg>

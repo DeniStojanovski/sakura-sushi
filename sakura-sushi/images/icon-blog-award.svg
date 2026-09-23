@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-labelledby="t">
+  <title id="t">Ribbon award icon representing restaurant recognition news</title>
+  <rect width="100" height="100" fill="#F6EFE3"/>
+  <circle cx="50" cy="40" r="20" fill="#EFD9A8" stroke="#2E2925" stroke-width="2"/>
+  <path d="M50 26 L53 36 L64 36 L55 43 L58 54 L50 47 L42 54 L45 43 L36 36 L47 36 Z" fill="#B8863B"/>
+  <path d="M38 56 L30 78 L46 70 Z" fill="#C1547A"/>
+  <path d="M62 56 L70 78 L54 70 Z" fill="#55654A"/>
+</svg>

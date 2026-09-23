@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" role="img" aria-labelledby="t">
+  <title id="t">Nigiri icon</title>
+  <rect x="12" y="38" width="56" height="26" rx="11" fill="#F6EFE3" stroke="#2E2925" stroke-width="2.5"/>
+  <path d="M12 46 Q40 30 68 46 L68 30 Q40 14 12 30 Z" fill="#C1547A" stroke="#2E2925" stroke-width="2.5" stroke-linejoin="round"/>
+</svg>

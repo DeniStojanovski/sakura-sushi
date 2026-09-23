@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="t">
+  <title id="t">Portrait medallion of Chef Daichi Yamamoto, wearing glasses</title>
+  <circle cx="60" cy="60" r="58" fill="#F6EFE3"/>
+  <circle cx="60" cy="60" r="58" fill="none" stroke="#C1547A" stroke-width="2.5"/>
+  <circle cx="60" cy="60" r="52" fill="none" stroke="#C1547A" stroke-width="1" opacity="0.5"/>
+  <path d="M32 98 Q60 82 88 98 L88 108 L32 108 Z" fill="#2E2925"/>
+  <circle cx="60" cy="64" r="24" fill="#E2A97E"/>
+  <path d="M39 56 Q60 42 81 56 L80 48 Q60 38 40 48 Z" fill="#2A2420"/>
+  <circle cx="50" cy="64" r="8" fill="none" stroke="#2E2925" stroke-width="2.4"/>
+  <circle cx="70" cy="64" r="8" fill="none" stroke="#2E2925" stroke-width="2.4"/>
+  <path d="M58 64 H62 M42 64 H36 M84 64 H78" stroke="#2E2925" stroke-width="2.4"/>
+</svg>

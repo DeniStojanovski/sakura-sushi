@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu — Sakura Sushi</title>
+<meta name="description" content="Browse the full Sakura Sushi menu: nigiri, rolls, sets and drinks, with allergen information and online ordering.">
+<meta name="keywords" content="sushi restaurant, Japanese restaurant Skopje, sushi delivery, nigiri, sushi rolls, Sakura Sushi, sushi menu Macedonia">
+<meta name="author" content="Sakura Sushi">
+<link rel="icon" type="image/svg+xml" href="images/logo-stamp.svg">
+<meta property="og:title" content="Sakura Sushi — Handcrafted Sushi in Skopje">
+<meta property="og:description" content="A small sushi counter in Skopje serving hand-pressed nigiri, rolls and sets since 2016.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="images/hero-plate.svg">
+<meta name="theme-color" content="#1C1614">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;0,800;1,600&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: '#1C1614',
+          inksoft: '#2E2925',
+          washi: '#F6EFE3',
+          washideep: '#EFE6D5',
+          sakura: '#C1547A',
+          sakurasoft: '#EFC3D3',
+          sakurawash: '#FBF0F3',
+          matcha: '#55654A',
+          gold: '#B8863B'
+        },
+        fontFamily: {
+          display: ['Alegreya', '"Noto Serif JP"', 'serif'],
+          body: ['Rubik', '"Noto Sans"', 'sans-serif']
+        }
+      }
+    }
+  };
+</script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="font-body" data-page="menu">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header id="site-header">
+  <nav class="wrap flex items-center justify-between py-4 relative" aria-label="Main navigation">
+    <a href="index.html" class="flex items-center gap-2" aria-label="Sakura Sushi — home">
+      <img src="images/logo-stamp.svg" alt="Sakura Sushi logo" class="logo-mark" width="40" height="40">
+      <span class="wordmark">Sakura <span>Sushi</span></span>
+    </a>
+
+    <button id="nav-toggle" class="md:hidden" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true"><path d="M3 7H23M3 13H23M3 19H23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+
+    <ul id="nav-menu" class="md:flex items-center gap-8">
+      <li><a href="index.html" class="main-nav-link" data-page="home" data-i18n="nav.home">Home</a></li>
+      <li><a href="menu.html" class="main-nav-link" data-page="menu" data-i18n="nav.menu">Menu</a></li>
+      <li><a href="team.html" class="main-nav-link" data-page="team" data-i18n="nav.team">Our Chefs</a></li>
+      <li><a href="blog.html" class="main-nav-link" data-page="blog" data-i18n="nav.blog">Journal</a></li>
+      <li><a href="contact.html" class="main-nav-link" data-page="contact" data-i18n="nav.contact">Contact</a></li>
+    </ul>
+
+    <div class="flex items-center gap-5">
+      <div id="lang-toggle" role="group" aria-label="Language selector">
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+        <span class="lang-divider" aria-hidden="true">/</span>
+        <button type="button" class="lang-btn" data-lang="mk" aria-pressed="false">МК</button>
+      </div>
+      <button id="cart-toggle" type="button" data-open-panel="cart-drawer" data-i18n-aria-label="cart.title" aria-label="Your order">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 4H6L7.2 15.4A2 2 0 0 0 9.2 17.2H18A2 2 0 0 0 20 15.4L21 8H6.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="10" cy="21" r="1.4" fill="currentColor"/>
+          <circle cx="17" cy="21" r="1.4" fill="currentColor"/>
+        </svg>
+        <span id="cart-count" class="cart-badge">0</span>
+      </button>
+    </div>
+  </nav>
+</header>
+<main id="main-content">
+
+<section class="page-banner" aria-labelledby="menu-page-title">
+  <div class="wrap">
+    <p class="eyebrow-mark" data-i18n="menuPage.eyebrow">The full spread</p>
+    <h1 id="menu-page-title" class="section-title font-display" data-i18n="menuPage.title">Our menu</h1>
+    <p class="mt-2 max-w-xl" data-i18n="menuPage.subtitle">Filter by course, or search for something specific. Prices include tax.</p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="menu-page-title">
+  <div class="wrap">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5 mb-10">
+      <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter menu by category and diet">
+        <button type="button" class="menu-filter-btn active" data-filter-category="all" data-i18n="menuPage.filterAll" aria-pressed="true">All</button>
+        <button type="button" class="menu-filter-btn" data-filter-category="nigiri" data-i18n="menuPage.filterNigiri" aria-pressed="false">Nigiri</button>
+        <button type="button" class="menu-filter-btn" data-filter-category="rolls" data-i18n="menuPage.filterRolls" aria-pressed="false">Rolls</button>
+        <button type="button" class="menu-filter-btn" data-filter-category="sets" data-i18n="menuPage.filterSets" aria-pressed="false">Sets</button>
+        <button type="button" class="menu-filter-btn" data-filter-category="drinks" data-i18n="menuPage.filterDrinks" aria-pressed="false">Drinks</button>
+        <span aria-hidden="true" style="display:inline-block;width:1px;height:22px;background:var(--rule);margin-inline:0.35rem"></span>
+        <button type="button" id="filter-veg" class="menu-filter-btn" data-i18n="menuPage.filterVeg" aria-pressed="false">Vegetarian</button>
+        <button type="button" id="filter-spicy" class="menu-filter-btn" data-i18n="menuPage.filterSpicy" aria-pressed="false">Spicy</button>
+      </div>
+      <div>
+        <label for="menu-search" class="sr-only" data-i18n="menuPage.searchLabel">Search the menu</label>
+        <input type="search" id="menu-search" placeholder="Search the menu…" data-i18n-placeholder="menuPage.searchPlaceholder"
+          class="w-full lg:w-72" style="border:1.5px solid var(--ink);border-radius:999px;padding:0.55rem 1.2rem;background:transparent;font-family:var(--font-body);color:var(--ink)">
+      </div>
+    </div>
+
+    <div id="menu-grid"></div>
+    <p id="menu-no-results" class="hidden text-sm py-10 text-center" style="color:var(--ink-soft)" data-i18n="menuPage.noResults">Nothing matches those filters — try clearing one.</p>
+  </div>
+</section>
+
+</main>
+
+<footer id="site-footer">
+  <div class="wrap py-14 grid gap-10 md:grid-cols-4">
+    <div>
+      <div class="flex items-center gap-2 mb-3">
+        <img src="images/logo-stamp.svg" alt="Sakura Sushi logo" width="34" height="34">
+        <span class="wordmark" style="color:var(--washi)">Sakura <span>Sushi</span></span>
+      </div>
+      <p class="text-sm" data-i18n="footer.aboutText">A small sushi counter in Skopje, open since 2016. Eight seats, one philosophy.</p>
+    </div>
+    <div>
+      <h3 data-i18n="footer.linksTitle">Explore</h3>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="menu.html" data-i18n="nav.menu">Menu</a></li>
+        <li><a href="team.html" data-i18n="nav.team">Our Chefs</a></li>
+        <li><a href="blog.html" data-i18n="nav.blog">Journal</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 data-i18n="footer.contactTitle">Visit</h3>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li data-i18n="contact.addressValue">12 Makedonija St, 1000 Skopje</li>
+        <li><a href="tel:+38925550123">+389 2 555 0123</a></li>
+        <li><a href="mailto:hello@sakurasushi.mk">hello@sakurasushi.mk</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 data-i18n="footer.hoursTitle">Hours</h3>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li data-i18n="footer.hours1">Tue–Sun · 12:00–23:00</li>
+        <li data-i18n="footer.hours2">Closed Mondays</li>
+      </ul>
+      <h3 class="mt-6" data-i18n="footer.followTitle">Follow</h3>
+      <div class="flex gap-3 mt-3">
+        <a href="#" aria-label="Sakura Sushi on Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+        </a>
+        <a href="#" aria-label="Sakura Sushi on Facebook">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 9h2V6h-2c-2 0-3.5 1.3-3.5 3.5V12H9v3h1.5v6h3v-6H16l.5-3h-3V9.8c0-.5.3-.8.8-.8Z" fill="currentColor"/></svg>
+        </a>
+        <a href="#" aria-label="Sakura Sushi on TikTok">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 4v9.5a2.5 2.5 0 1 1-2-2.45" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M14 4c.3 2 1.8 3.5 3.8 3.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="wrap py-5 flex flex-col md:flex-row gap-2 justify-between text-xs">
+      <p>&copy; <span id="footer-year">2026</span> Sakura Sushi. <span data-i18n="footer.rights">All rights reserved.</span></p>
+      <p data-i18n="footer.madeFor">A student project built for a university web development course.</p>
+    </div>
+  </div>
+</footer>
+
+<div id="overlay" class="overlay"></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<aside id="cart-drawer" aria-hidden="true" aria-label="Shopping cart">
+  <div class="flex items-center justify-between px-5 py-4" style="border-bottom:1px solid var(--rule)">
+    <h2 class="font-display text-xl" data-i18n="cart.title">Your order</h2>
+    <button type="button" data-close-panel="cart-drawer" aria-label="Close cart" class="text-2xl leading-none">&times;</button>
+  </div>
+  <div id="cart-items"></div>
+  <div class="px-5 py-4" style="border-top:1px solid var(--rule)">
+    <div class="flex justify-between text-sm mb-1">
+      <span data-i18n="cart.subtotal">Subtotal</span>
+      <span id="cart-subtotal">$0.00</span>
+    </div>
+    <div class="flex justify-between text-sm mb-1">
+      <span data-i18n="cart.delivery">Delivery</span>
+      <span id="cart-delivery">$0.00</span>
+    </div>
+    <p class="text-xs mb-3" style="color:var(--ink-soft)" data-i18n="cart.freeDeliveryNote">Free delivery over $40</p>
+    <div class="flex justify-between font-bold text-lg mb-4">
+      <span data-i18n="cart.total">Total</span>
+      <span id="cart-total">$0.00</span>
+    </div>
+    <button type="button" id="checkout-btn" class="btn btn-primary w-full" data-open-panel="checkout-modal" data-i18n="cart.checkout" disabled>Checkout</button>
+    <button type="button" class="btn btn-outline w-full mt-2" data-close-panel="cart-drawer" data-i18n="cart.continue">Continue browsing</button>
+  </div>
+</aside>
+
+<div id="checkout-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
+  <div class="modal-panel">
+    <button type="button" class="modal-close" data-close-panel="checkout-modal" aria-label="Close checkout">&times;</button>
+    <h2 id="checkout-title" class="font-display text-2xl mb-5" data-i18n="checkout.title">Delivery details</h2>
+    <form id="checkout-form" novalidate>
+      <div class="field">
+        <label for="checkout-name" data-i18n="checkout.name">Full name</label>
+        <input type="text" id="checkout-name" name="name" required autocomplete="name">
+        <div class="field-error" id="checkout-name-error" aria-live="polite"></div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
+        <div class="field">
+          <label for="checkout-phone" data-i18n="checkout.phone">Phone number</label>
+          <input type="tel" id="checkout-phone" name="phone" required autocomplete="tel" placeholder="+389 70 123 456">
+          <div class="field-error" id="checkout-phone-error" aria-live="polite"></div>
+        </div>
+        <div class="field">
+          <label for="checkout-email" data-i18n="checkout.email">Email</label>
+          <input type="email" id="checkout-email" name="email" required autocomplete="email">
+          <div class="field-error" id="checkout-email-error" aria-live="polite"></div>
+        </div>
+      </div>
+      <div class="field">
+        <label for="checkout-address" data-i18n="checkout.address">Delivery address</label>
+        <input type="text" id="checkout-address" name="address" required autocomplete="street-address">
+        <div class="field-error" id="checkout-address-error" aria-live="polite"></div>
+      </div>
+      <div class="field">
+        <label for="checkout-city" data-i18n="checkout.city">City</label>
+        <input type="text" id="checkout-city" name="city" required autocomplete="address-level2" value="Skopje">
+        <div class="field-error" id="checkout-city-error" aria-live="polite"></div>
+      </div>
+      <div class="field">
+        <label for="checkout-notes" data-i18n="checkout.notes">Notes for the rider (optional)</label>
+        <textarea id="checkout-notes" name="notes" rows="2"></textarea>
+      </div>
+
+      <fieldset class="field">
+        <legend class="mb-2" data-i18n="checkout.paymentTitle">Payment method</legend>
+        <div class="grid gap-2">
+          <label class="radio-card">
+            <input type="radio" name="payment" value="cash" checked>
+            <span data-i18n="checkout.cash">Cash on delivery</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="payment" value="card">
+            <span data-i18n="checkout.card">Card on delivery</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="payment" value="wallet">
+            <span data-i18n="checkout.wallet">Mobile wallet</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="field" style="border-top:1px solid var(--rule);padding-top:1rem">
+        <p class="font-semibold mb-2" data-i18n="checkout.summaryTitle">Order summary</p>
+        <div id="checkout-summary-items" class="text-sm"></div>
+        <div class="flex justify-between text-sm mt-2 pt-2" style="border-top:1px solid var(--rule)">
+          <span data-i18n="cart.subtotal">Subtotal</span><span id="checkout-summary-subtotal">$0.00</span>
+        </div>
+        <div class="flex justify-between text-sm">
+          <span data-i18n="cart.delivery">Delivery</span><span id="checkout-summary-delivery">$0.00</span>
+        </div>
+        <div class="flex justify-between font-bold mt-1">
+          <span data-i18n="cart.total">Total</span><span id="checkout-summary-total">$0.00</span>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-full mt-4" data-i18n="checkout.placeOrder">Place order</button>
+    </form>
+  </div>
+</div>
+
+<div id="confirmation-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="confirmation-title">
+  <div class="modal-panel text-center">
+    <button type="button" class="modal-close" data-close-panel="confirmation-modal" aria-label="Close">&times;</button>
+    <div class="stamp-wrap">
+      <img id="confirmation-stamp" src="images/logo-stamp.svg" alt="Confirmed order stamp" class="stamp-img" width="90" height="90">
+    </div>
+    <h2 id="confirmation-title" class="font-display text-2xl mb-2" data-i18n="confirmation.title">Order confirmed</h2>
+    <p class="text-sm mb-5" style="color:var(--ink-soft)" data-i18n="confirmation.thanks">We've started plating. A confirmation was sent to your email.</p>
+
+    <div class="text-left text-sm rounded p-4" style="background:var(--sakura-wash)">
+      <div class="flex justify-between mb-1">
+        <span data-i18n="confirmation.orderIdLabel">Order ID</span>
+        <span id="confirmation-order-id" class="font-bold">SKR-000000</span>
+      </div>
+      <div class="flex justify-between mb-3">
+        <span data-i18n="confirmation.eta">Estimated arrival</span>
+        <span data-i18n="confirmation.etaValue">35–45 minutes</span>
+      </div>
+      <div id="confirmation-items" class="mb-2" style="border-top:1px solid var(--rule);padding-top:0.5rem"></div>
+      <div class="flex justify-between font-bold">
+        <span data-i18n="confirmation.totalPaid">Total charged</span>
+        <span id="confirmation-total-paid">$0.00</span>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-2 mt-5">
+      <button type="button" class="btn btn-outline" id="print-receipt-btn" data-i18n="confirmation.print">Print receipt</button>
+      <button type="button" class="btn btn-primary" data-close-panel="confirmation-modal" data-i18n="confirmation.continue">Continue browsing</button>
+    </div>
+  </div>
+</div>
+
+<div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie notice">
+  <div class="wrap py-4 flex flex-col md:flex-row items-center gap-4 justify-between">
+    <p class="text-sm" data-i18n="cookies.text" style="max-width:60ch">We use a few cookies to remember your language and cart — nothing is sold to third parties.</p>
+    <div class="flex gap-3 flex-shrink-0">
+      <button type="button" id="cookie-preferences-btn" class="btn btn-outline-light btn-sm" data-i18n="cookies.preferences">Preferences</button>
+      <button type="button" id="cookie-accept" class="btn btn-sakura btn-sm" data-i18n="cookies.accept">Accept all</button>
+    </div>
+  </div>
+</div>
+
+<div id="cookie-preferences-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="cookie-pref-title">
+  <div class="modal-panel">
+    <button type="button" class="modal-close" data-close-panel="cookie-preferences-modal" aria-label="Close">&times;</button>
+    <h2 id="cookie-pref-title" class="font-display text-2xl mb-5" data-i18n="cookies.prefTitle">Cookie preferences</h2>
+
+    <div class="mb-4 pb-4" style="border-bottom:1px solid var(--rule)">
+      <div class="flex justify-between items-center">
+        <span class="font-semibold" data-i18n="cookies.necessary">Necessary</span>
+        <input type="checkbox" checked disabled aria-label="Necessary cookies, always on">
+      </div>
+      <p class="text-xs mt-1" style="color:var(--ink-soft)" data-i18n="cookies.necessaryDesc">Required for the cart and language settings to work. Always on.</p>
+    </div>
+
+    <div class="mb-4 pb-4" style="border-bottom:1px solid var(--rule)">
+      <div class="flex justify-between items-center">
+        <span class="font-semibold" data-i18n="cookies.analytics">Analytics</span>
+        <input type="checkbox" id="cookie-analytics" aria-label="Analytics cookies">
+      </div>
+      <p class="text-xs mt-1" style="color:var(--ink-soft)" data-i18n="cookies.analyticsDesc">Helps us understand which pages are useful. Anonymous.</p>
+    </div>
+
+    <div class="mb-5">
+      <div class="flex justify-between items-center">
+        <span class="font-semibold" data-i18n="cookies.marketing">Marketing</span>
+        <input type="checkbox" id="cookie-marketing" aria-label="Marketing cookies">
+      </div>
+      <p class="text-xs mt-1" style="color:var(--ink-soft)" data-i18n="cookies.marketingDesc">Used for the occasional newsletter. Off by default.</p>
+    </div>
+
+    <button type="button" id="cookie-save-preferences" class="btn btn-primary w-full" data-i18n="cookies.save">Save preferences</button>
+  </div>
+</div>
+<script src="js/translations.js"></script>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/menu.js"></script>
+<script>document.getElementById("footer-year").textContent = new Date().getFullYear();</script>
+</body>
+</html>

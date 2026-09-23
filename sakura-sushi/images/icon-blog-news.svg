@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-labelledby="t">
+  <title id="t">Megaphone icon representing a restaurant news update</title>
+  <rect width="100" height="100" fill="#F6EFE3"/>
+  <path d="M28 44 L58 30 V70 L28 56 Z" fill="#B8863B" stroke="#2E2925" stroke-width="2" stroke-linejoin="round"/>
+  <rect x="20" y="44" width="8" height="12" rx="2" fill="#2E2925"/>
+  <path d="M58 34 Q76 40 76 50 Q76 60 58 66" fill="none" stroke="#2E2925" stroke-width="2"/>
+  <path d="M36 58 L40 74" stroke="#2E2925" stroke-width="3" stroke-linecap="round"/>
+</svg>

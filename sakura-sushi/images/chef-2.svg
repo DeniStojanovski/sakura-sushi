@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="t">
+  <title id="t">Portrait medallion of Chef Ana Petrovska, hair tied back with a headband</title>
+  <circle cx="60" cy="60" r="58" fill="#F6EFE3"/>
+  <circle cx="60" cy="60" r="58" fill="none" stroke="#C1547A" stroke-width="2.5"/>
+  <circle cx="60" cy="60" r="52" fill="none" stroke="#C1547A" stroke-width="1" opacity="0.5"/>
+  <path d="M32 98 Q60 80 88 98 L88 108 L32 108 Z" fill="#55654A"/>
+  <circle cx="60" cy="62" r="23" fill="#EAC08E"/>
+  <path d="M37 58 Q60 30 83 58 Q83 48 60 44 Q37 48 37 58 Z" fill="#2E2020"/>
+  <rect x="35" y="52" width="50" height="8" rx="4" fill="#C1547A"/>
+</svg>

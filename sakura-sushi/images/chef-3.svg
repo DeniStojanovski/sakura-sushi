@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="t">
+  <title id="t">Portrait medallion of Chef Kenji Watanabe, wearing a hachimaki headband and short beard</title>
+  <circle cx="60" cy="60" r="58" fill="#F6EFE3"/>
+  <circle cx="60" cy="60" r="58" fill="none" stroke="#C1547A" stroke-width="2.5"/>
+  <circle cx="60" cy="60" r="52" fill="none" stroke="#C1547A" stroke-width="1" opacity="0.5"/>
+  <path d="M32 98 Q60 82 88 98 L88 108 L32 108 Z" fill="#2E2925"/>
+  <circle cx="60" cy="64" r="24" fill="#D89A6A"/>
+  <path d="M40 78 Q60 90 80 78 Q78 68 60 68 Q42 68 40 78 Z" fill="#3A3330"/>
+  <path d="M36 52 H84" stroke="#B8863B" stroke-width="8"/>
+  <path d="M84 52 L96 58" stroke="#B8863B" stroke-width="6" stroke-linecap="round"/>
+  <path d="M38 48 Q60 34 82 48" fill="#3A3330"/>
+</svg>

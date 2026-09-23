@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="t">
+  <title id="t">Portrait medallion of Chef Maria Ilievska, hair in a bun with a small chef cap</title>
+  <circle cx="60" cy="60" r="58" fill="#F6EFE3"/>
+  <circle cx="60" cy="60" r="58" fill="none" stroke="#C1547A" stroke-width="2.5"/>
+  <circle cx="60" cy="60" r="52" fill="none" stroke="#C1547A" stroke-width="1" opacity="0.5"/>
+  <path d="M32 98 Q60 80 88 98 L88 108 L32 108 Z" fill="#B8863B"/>
+  <circle cx="60" cy="63" r="23" fill="#F0C8A0"/>
+  <path d="M39 56 Q60 40 81 56 Q79 46 60 44 Q41 46 39 56 Z" fill="#5B3A2E"/>
+  <circle cx="60" cy="32" r="10" fill="#5B3A2E"/>
+  <rect x="46" y="26" width="28" height="14" rx="7" fill="#FBF7EF" stroke="#2E2925" stroke-width="1.6"/>
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" role="img" aria-labelledby="t">
+  <title id="t">Teacup icon</title>
+  <path d="M22 32 H58 L54 60 Q40 66 26 60 Z" fill="#F6EFE3" stroke="#2E2925" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M58 38 Q70 38 68 48 Q66 56 56 54" fill="none" stroke="#2E2925" stroke-width="2.5"/>
+  <path d="M26 32 Q40 24 54 32" fill="none" stroke="#55654A" stroke-width="2.5"/>
+</svg>

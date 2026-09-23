@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 520" role="img" aria-labelledby="heroTitle">
+  <title id="heroTitle">Illustration of a hand-pressed nigiri platter with chopsticks and a cherry blossom branch</title>
+  <defs>
+    <radialGradient id="plateShadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <ellipse cx="260" cy="430" rx="200" ry="26" fill="url(#plateShadow)"/>
+
+  <!-- plate -->
+  <ellipse cx="260" cy="330" rx="220" ry="120" fill="#EFE6D5"/>
+  <ellipse cx="260" cy="322" rx="220" ry="120" fill="#F6EFE3"/>
+  <ellipse cx="260" cy="322" rx="176" ry="94" fill="none" stroke="#C1547A" stroke-width="2" opacity="0.35"/>
+
+  <!-- nigiri 1 -->
+  <g transform="translate(150,270)">
+    <rect x="-46" y="6" width="92" height="40" rx="16" fill="#FBF7EF"/>
+    <path d="M-46 22 Q0 6 46 22 L46 -4 Q0 -20 -46 -4 Z" fill="#E7A6A0"/>
+  </g>
+
+  <!-- nigiri 2 -->
+  <g transform="translate(260,300) rotate(-6)">
+    <rect x="-46" y="6" width="92" height="40" rx="16" fill="#FBF7EF"/>
+    <path d="M-46 22 Q0 4 46 22 L46 -6 Q0 -22 -46 -6 Z" fill="#D9752B"/>
+  </g>
+
+  <!-- nigiri 3 -->
+  <g transform="translate(200,340) rotate(4)">
+    <rect x="-42" y="6" width="84" height="36" rx="15" fill="#FBF7EF"/>
+    <path d="M-42 20 Q0 4 42 20 L42 -4 Q0 -18 -42 -4 Z" fill="#B8863B"/>
+  </g>
+
+  <!-- maki roll stack -->
+  <g transform="translate(345,320)">
+    <circle cx="0" cy="0" r="30" fill="#FBF7EF"/>
+    <circle cx="0" cy="0" r="30" fill="none" stroke="#2E2925" stroke-width="3" opacity="0.85"/>
+    <circle cx="0" cy="0" r="12" fill="#C1547A"/>
+    <circle cx="0" cy="0" r="4" fill="#F6EFE3"/>
+  </g>
+  <g transform="translate(378,300)">
+    <circle cx="0" cy="0" r="26" fill="#FBF7EF"/>
+    <circle cx="0" cy="0" r="26" fill="none" stroke="#2E2925" stroke-width="3" opacity="0.85"/>
+    <circle cx="0" cy="0" r="10" fill="#55654A"/>
+  </g>
+
+  <!-- pickled ginger -->
+  <g transform="translate(150,360)">
+    <path d="M-18 8 Q-6 -10 8 4 Q20 12 10 22 Q-6 26 -18 8 Z" fill="#E7A6A0" opacity="0.9"/>
+    <path d="M4 12 Q14 6 20 14 Q22 22 12 22 Q2 20 4 12 Z" fill="#E7A6A0" opacity="0.7"/>
+  </g>
+
+  <!-- soy sauce dish -->
+  <g transform="translate(330,375)">
+    <ellipse cx="0" cy="0" rx="34" ry="18" fill="#2E2925"/>
+    <ellipse cx="0" cy="-3" rx="26" ry="13" fill="#1C1614"/>
+  </g>
+
+  <!-- chopsticks -->
+  <g transform="rotate(24 260 330)">
+    <rect x="60" y="150" width="300" height="7" rx="3.5" fill="#B8863B"/>
+    <rect x="60" y="164" width="300" height="7" rx="3.5" fill="#8F6A2E"/>
+  </g>
+
+  <!-- sakura branch, upper corner -->
+  <g transform="translate(410,70)">
+    <path d="M0 60 Q30 10 90 0" stroke="#5B4636" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <g fill="#EFA9C4">
+      <circle cx="90" cy="0" r="10"/>
+      <circle cx="70" cy="18" r="9"/>
+      <circle cx="50" cy="4" r="8"/>
+      <circle cx="30" cy="26" r="7"/>
+    </g>
+    <g fill="#C1547A">
+      <circle cx="90" cy="0" r="3"/>
+      <circle cx="70" cy="18" r="2.6"/>
+      <circle cx="50" cy="4" r="2.4"/>
+      <circle cx="30" cy="26" r="2"/>
+    </g>
+  </g>
+</svg>
