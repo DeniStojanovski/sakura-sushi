@@ -343,6 +343,7 @@ select:focus-visible,
 .hero-headline {
   font-size: clamp(2.4rem, 5vw, 4rem);
   margin-block: 1rem;
+  color: var(--washi);
 }
 .hero-headline em {
   color: var(--sakura-soft);
