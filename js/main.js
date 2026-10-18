@@ -124,6 +124,13 @@ function initNav() {
         toggle.setAttribute("aria-expanded", "false");
       });
     });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && menu.classList.contains("open")) {
+        menu.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.focus();
+      }
+    });
   }
 
   const page = document.body.getAttribute("data-page");

@@ -84,7 +84,7 @@ const NOREN_PLAY = 'always'; // 'always' = every full page load; 'once' = first 
     curtain.classList.add('noren-active');
 
     function dismissNoren() {
-      curtain.classList.add('open');
+      curtain.classList.add('noren-leaving', 'open');
       session.set('sakura_noren_done', '1');
 
       // Listen for panel transition end, then fully hide
@@ -92,15 +92,18 @@ const NOREN_PLAY = 'always'; // 'always' = every full page load; 'once' = first 
       if (panel) {
         panel.addEventListener('transitionend', () => { collapseNoren(); }, { once: true });
       }
-      // Fallback: force hide after 1.2s even if transitionend doesn't fire
-      setTimeout(() => { collapseNoren(); }, 1200);
+      // Fallback: force hide after 0.9s even if transitionend doesn't fire
+      setTimeout(() => { collapseNoren(); }, 900);
     }
 
-    // Auto-dismiss after brief display (~1s total)
-    const t = setTimeout(dismissNoren, 1000);
+    // Logo fades out (0.2s) just before the panels slide apart (0.7s):
+    // ~1.35s total
+    const tLogo = setTimeout(() => curtain.classList.add('noren-leaving'), 500);
+    const t = setTimeout(dismissNoren, 650);
+    const skip = () => { clearTimeout(tLogo); clearTimeout(t); dismissNoren(); };
     // Skip on click or any key
-    curtain.addEventListener('click', () => { clearTimeout(t); dismissNoren(); }, { once: true });
-    document.addEventListener('keydown', () => { clearTimeout(t); dismissNoren(); }, { once: true });
+    curtain.addEventListener('click', skip, { once: true });
+    document.addEventListener('keydown', skip, { once: true });
   } catch(e) {
     collapseNoren(); // if anything goes wrong, make sure it's gone
   }
