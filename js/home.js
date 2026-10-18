@@ -9,18 +9,19 @@ function renderFeaturedMenu() {
   const container = document.getElementById("featured-menu-grid");
   if (!container) return;
 
-  container.innerHTML = FEATURED_MENU_IDS.map((id) => {
+  container.className = 'grid sm:grid-cols-2 lg:grid-cols-4 gap-6';
+  container.innerHTML = FEATURED_MENU_IDS.map((id, i) => {
     const item = findMenuItem(id);
     if (!item) return "";
     return `
-    <div class="feature-card">
-      <img src="${item.icon}" alt="${item[lang].name}" class="menu-item-icon" width="56" height="56" loading="lazy">
-      <span class="chef-pick-tag mt-3" style="display:inline-flex">${t("menuPage.chefPick", lang)}</span>
-      <h3 class="font-display text-lg mt-2">${item[lang].name}</h3>
-      <p class="text-sm mt-1" style="color:var(--ink-soft)">${item[lang].desc}</p>
-      <div class="flex items-center justify-between mt-4">
-        <span class="menu-item-price">${formatPrice(item.price)}</span>
-        <button type="button" class="btn btn-outline btn-sm" data-featured-add="${item.id}"
+    <div class="dish-card">
+      <img src="${item.icon}" alt="${item[lang].name}" width="80" height="80" loading="lazy">
+      ${item.chefPick ? `<span class="chef-pick-tag" style="display:inline-block;margin-bottom:0.5rem">${t("menuPage.chefPick", lang)}</span>` : ''}
+      <p class="dish-card-name">${item[lang].name}</p>
+      <p class="dish-card-desc">${item[lang].desc}</p>
+      <div class="flex items-center justify-between gap-2">
+        <span class="dish-card-price">${formatPrice(item.price)}</span>
+        <button type="button" class="btn btn-primary btn-sm" data-featured-add="${item.id}"
           aria-label="${t("menuPage.addToCart", lang)} ${item[lang].name}">${t("menuPage.addToCart", lang)}</button>
       </div>
     </div>`;
@@ -52,7 +53,7 @@ function initStatCounters() {
 
   function animate(el) {
     const target = parseInt(el.getAttribute("data-count"), 10) || 0;
-    const suffix = el.getAttribute("data-suffix") || "";
+    const suffix = el.textContent.replace(/^\d+/, '') || '';
 
     if (reduceMotion) {
       el.textContent = target + suffix;

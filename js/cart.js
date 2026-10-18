@@ -9,6 +9,18 @@ const CART_KEY = "sakura_cart";
 const DELIVERY_FEE = 3.5;
 const FREE_DELIVERY_THRESHOLD = 40;
 
+/* -- Promo codes ----------------------------------------------------------- */
+const PROMO_CODES = { 'SAKURA10': 0.10, 'SUSHI10': 0.10 }; // code → discount fraction
+let currentPromo = null; // { code, rate } or null
+
+function cartDiscount() {
+  if (!currentPromo) return 0;
+  return cartSubtotal() * currentPromo.rate;
+}
+
+/* -- Delivery type --------------------------------------------------------- */
+let currentDeliveryType = 'delivery'; // 'delivery' | 'pickup'
+
 function getCart() {
   try {
     const raw = JSON.parse(localStorage.getItem(CART_KEY));
@@ -19,7 +31,7 @@ function getCart() {
 }
 
 function saveCart(cart) {
-  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch(e) {}
   updateCartUI();
 }
 
@@ -64,13 +76,14 @@ function cartSubtotal() {
 }
 
 function cartDeliveryFee() {
+  if (currentDeliveryType === 'pickup') return 0;
   const sub = cartSubtotal();
   if (sub <= 0) return 0;
   return sub >= FREE_DELIVERY_THRESHOLD ? 0 : DELIVERY_FEE;
 }
 
 function cartTotal() {
-  return cartSubtotal() + cartDeliveryFee();
+  return cartSubtotal() - cartDiscount() + cartDeliveryFee();
 }
 
 function formatPrice(n) {
@@ -120,10 +133,17 @@ function renderCartDrawerContents() {
 
   const subtotalEl = document.getElementById("cart-subtotal");
   const deliveryEl = document.getElementById("cart-delivery");
-  const totalEl = document.getElementById("cart-total");
+  const totalEl    = document.getElementById("cart-total");
   if (subtotalEl) subtotalEl.textContent = formatPrice(cartSubtotal());
   if (deliveryEl) deliveryEl.textContent = formatPrice(cartDeliveryFee());
-  if (totalEl) totalEl.textContent = formatPrice(cartTotal());
+  if (totalEl)    totalEl.textContent    = formatPrice(cartTotal());
+
+  // Discount row (promo)
+  const discountRow = document.getElementById("cart-discount-row");
+  const discountEl  = document.getElementById("cart-discount");
+  const discount    = cartDiscount();
+  if (discountRow) discountRow.style.display = discount > 0 ? '' : 'none';
+  if (discountEl)  discountEl.textContent = '-' + formatPrice(discount);
 
   const checkoutBtn = document.getElementById("checkout-btn");
   if (checkoutBtn) checkoutBtn.disabled = cart.length === 0;
@@ -139,18 +159,47 @@ function renderCheckoutSummary() {
       const item = findMenuItem(line.id);
       if (!item) return "";
       return `<div class="flex justify-between text-sm py-1">
-        <span>${line.qty}\u00d7 ${item[lang].name}</span>
+        <span>${line.qty}\u00d7 ${escapeHtml ? escapeHtml(item[lang].name) : item[lang].name}</span>
         <span>${formatPrice(item.price * line.qty)}</span>
       </div>`;
     })
     .join("");
 
-  const sub = document.getElementById("checkout-summary-subtotal");
-  const del = document.getElementById("checkout-summary-delivery");
-  const tot = document.getElementById("checkout-summary-total");
-  if (sub) sub.textContent = formatPrice(cartSubtotal());
-  if (del) del.textContent = formatPrice(cartDeliveryFee());
-  if (tot) tot.textContent = formatPrice(cartTotal());
+  const sub  = document.getElementById("checkout-summary-subtotal");
+  const del  = document.getElementById("checkout-summary-delivery");
+  const tot  = document.getElementById("checkout-summary-total");
+  const disc = document.getElementById("checkout-summary-discount");
+  const discRow = document.getElementById("checkout-summary-discount-row");
+  const discount = cartDiscount();
+
+  if (sub)  sub.textContent  = formatPrice(cartSubtotal());
+  if (del)  del.textContent  = formatPrice(cartDeliveryFee());
+  if (disc) disc.textContent = '-' + formatPrice(discount);
+  if (discRow) discRow.style.display = discount > 0 ? '' : 'none';
+
+  // Tip (read from form)
+  const tipInput = document.querySelector('input[name="tip"]:checked');
+  const tipPct   = tipInput ? parseFloat(tipInput.value) : 0;
+  const tipAmt   = cartSubtotal() * tipPct / 100;
+  const tipEl    = document.getElementById("checkout-summary-tip");
+  const tipRow   = document.getElementById("checkout-summary-tip-row");
+  if (tipEl)  tipEl.textContent = formatPrice(tipAmt);
+  if (tipRow) tipRow.style.display = tipAmt > 0 ? '' : 'none';
+
+  if (tot)  tot.textContent = formatPrice(cartTotal() + tipAmt);
+
+  // Prefill checkout from logged-in profile (only fill empty fields)
+  if (typeof authGetCurrentUser === 'function') {
+    const user = authGetCurrentUser();
+    if (user) {
+      const fill = (id, val) => { const el = document.getElementById(id); if (el && !el.value) el.value = val; };
+      fill('checkout-name',    user.name    || '');
+      fill('checkout-phone',   user.phone   || '');
+      fill('checkout-email',   user.email   || '');
+      fill('checkout-address', user.defaultAddress || '');
+      fill('checkout-city',    user.defaultCity    || 'Skopje');
+    }
+  }
 }
 
 /* ---------------------------------------------------------------------
@@ -169,18 +218,20 @@ function generateOrderId() {
 function validateCheckoutForm(form) {
   const lang = getLang();
   let valid = true;
+  const isPickup = currentDeliveryType === 'pickup';
   const fields = [
-    { id: "checkout-name", type: "required" },
-    { id: "checkout-phone", type: "phone" },
-    { id: "checkout-email", type: "email" },
-    { id: "checkout-address", type: "required" },
-    { id: "checkout-city", type: "required" }
+    { id: "checkout-name",    type: "required" },
+    { id: "checkout-phone",   type: "phone" },
+    { id: "checkout-email",   type: "email" },
+    { id: "checkout-address", type: "required", skip: isPickup },
+    { id: "checkout-city",    type: "required", skip: isPickup }
   ];
 
-  fields.forEach(({ id, type }) => {
+  fields.forEach(({ id, type, skip }) => {
     const input = form.querySelector("#" + id);
     const errorEl = form.querySelector("#" + id + "-error");
     if (!input) return;
+    if (skip) { input.classList.remove("invalid"); if (errorEl) errorEl.textContent = ""; return; }
     const value = input.value.trim();
     let message = "";
 
@@ -237,6 +288,10 @@ function placeOrder(form) {
   if (!validateCheckoutForm(form)) return;
 
   const paymentInput = form.querySelector('input[name="payment"]:checked');
+  const tipInput     = form.querySelector('input[name="tip"]:checked');
+  const tipPct       = tipInput ? parseFloat(tipInput.value) : 0;
+  const tipAmt       = cartSubtotal() * tipPct / 100;
+
   const lines = getCart().map((line) => {
     const item = findMenuItem(line.id);
     return { name: item[lang].name, qty: line.qty, price: item.price };
@@ -246,20 +301,51 @@ function placeOrder(form) {
     id: generateOrderId(),
     date: new Date().toISOString(),
     name: form.querySelector("#checkout-name").value.trim(),
-    address: form.querySelector("#checkout-address").value.trim(),
-    city: form.querySelector("#checkout-city").value.trim(),
+    address: currentDeliveryType === 'pickup' ? '' : form.querySelector("#checkout-address").value.trim(),
+    city: currentDeliveryType === 'pickup' ? '' : form.querySelector("#checkout-city").value.trim(),
     payment: paymentInput ? paymentInput.value : "cash",
+    deliveryType: currentDeliveryType,
     lines,
     subtotal: cartSubtotal(),
+    discount: cartDiscount(),
     delivery: cartDeliveryFee(),
-    total: cartTotal()
+    tip: tipAmt,
+    total: cartTotal() + tipAmt
   };
 
+  // Save order to account if logged in
+  if (typeof authSaveOrder === 'function' && typeof authGetCurrentUser === 'function') {
+    const user = authGetCurrentUser();
+    if (user) authSaveOrder(user.id, order);
+  }
+
   renderConfirmation(order);
+  advanceOrderProgress();
   saveCart([]);
+  currentPromo = null;
   form.reset();
   closePanel("checkout-modal");
   openPanel("confirmation-modal");
+}
+
+function advanceOrderProgress() {
+  const steps = ['progress-received', 'progress-preparing', 'progress-onway'];
+  steps.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.removeAttribute('data-active');
+  });
+  const first = document.getElementById(steps[0]);
+  if (first) first.setAttribute('data-active', '');
+
+  let idx = 0;
+  const advance = () => {
+    if (idx >= steps.length - 1) return;
+    idx++;
+    const el = document.getElementById(steps[idx]);
+    if (el) el.setAttribute('data-active', '');
+    setTimeout(advance, 2500);
+  };
+  setTimeout(advance, 2000);
 }
 
 /* ---------------------------------------------------------------------
@@ -293,6 +379,47 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const printBtn = e.target.closest("#print-receipt-btn");
     if (printBtn) window.print();
+
+    // Promo code apply
+    const promoBtn = e.target.closest("#promo-apply-btn");
+    if (promoBtn) {
+      const lang  = getLang();
+      const input = document.getElementById("promo-input");
+      const msgEl = document.getElementById("promo-message");
+      if (!input) return;
+      const code = input.value.trim().toUpperCase();
+      const rate = PROMO_CODES[code];
+      if (rate) {
+        currentPromo = { code, rate };
+        input.classList.remove("invalid");
+        if (msgEl) {
+          msgEl.textContent = t("cart.promoApplied", lang).replace("{code}", code).replace("{pct}", Math.round(rate * 100));
+          msgEl.style.color = "var(--matcha)";
+        }
+      } else {
+        currentPromo = null;
+        input.classList.add("invalid");
+        if (msgEl) {
+          msgEl.textContent = t("cart.promoInvalid", lang);
+          msgEl.style.color = "var(--sakura)";
+        }
+      }
+      renderCartDrawerContents();
+    }
+  });
+
+  // Delivery type toggle
+  document.addEventListener("change", (e) => {
+    if (e.target.name === "delivery_type") {
+      currentDeliveryType = e.target.value;
+      renderCheckoutSummary();
+      // Show/hide address fields for pickup
+      const addrGroup = document.getElementById("delivery-address-fields");
+      if (addrGroup) addrGroup.style.display = currentDeliveryType === 'pickup' ? 'none' : '';
+    }
+    if (e.target.name === "tip") {
+      renderCheckoutSummary();
+    }
   });
 
   const checkoutForm = document.getElementById("checkout-form");

@@ -67,7 +67,7 @@ function getCookieConsent() {
 }
 
 function saveCookieConsent(consent) {
-  localStorage.setItem(COOKIE_KEY, JSON.stringify(consent));
+  try { localStorage.setItem(COOKIE_KEY, JSON.stringify(consent)); } catch(e) {}
 }
 
 function initCookieBanner() {

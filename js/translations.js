@@ -6,11 +6,14 @@
 
 const translations = {
   en: {
-    nav: { home: "Home", menu: "Menu", team: "Our Chefs", blog: "Journal", contact: "Contact" },
+    nav: { home: "Home", menu: "Menu", team: "Our Chefs", blog: "Journal", contact: "Contact", reservation: "Reserve", themeLight: "Switch to light mode", themeDark: "Switch to dark mode" },
     hero: {
       badge: "Since 2016 — Skopje",
       title: 'Handcrafted sushi, served with <em>quiet precision</em>.',
-      subtitle: "Sakura Sushi is a small counter of eight seats and twenty years of training behind it. Every piece is pressed to order, never pre-made.",
+      titleLine1: "Handcrafted",
+      titleLine2: "sushi",
+      titleLine3: "after dark.",
+      subtitle: "A small counter of eight seats and twenty years of training. Every piece pressed to order, never pre-made.",
       ctaMenu: "View the menu",
       ctaReserve: "Reserve a seat"
     },
@@ -56,7 +59,9 @@ const translations = {
       hours2: "Closed Mondays",
       followTitle: "Follow",
       rights: "All rights reserved.",
-      madeFor: "A student project built for a university web development course."
+      madeFor: "A student project built for a university web development course.",
+      open: "Open now",
+      closed: "Closed"
     },
     menuPage: {
       eyebrow: "The full spread",
@@ -75,7 +80,8 @@ const translations = {
       allergensLabel: "Contains:",
       addToCart: "Add",
       added: "Added",
-      chefPick: "Chef's pick"
+      chefPick: "Chef's pick",
+      favourite: "Favourite"
     },
     allergens: { gluten: "Gluten", fish: "Fish", shellfish: "Shellfish", sesame: "Sesame", soy: "Soy", dairy: "Dairy", egg: "Egg", alcohol: "Alcohol" },
     cart: {
@@ -88,7 +94,12 @@ const translations = {
       continue: "Continue browsing",
       close: "Close cart",
       freeDeliveryNote: "Free delivery over $40",
-      remove: "Remove"
+      remove: "Remove",
+      discount: "Discount",
+      promoPlaceholder: "Promo code",
+      promoApply: "Apply",
+      promoApplied: "{pct}% off applied ({code})",
+      promoInvalid: "Invalid promo code."
     },
     checkout: {
       title: "Delivery details",
@@ -108,7 +119,13 @@ const translations = {
       errorRequired: "This field is required.",
       errorEmail: "Enter a valid email address.",
       errorPhone: "Enter a valid phone number.",
-      emptyCartNote: "Add items to your cart before checking out."
+      emptyCartNote: "Add items to your cart before checking out.",
+      deliveryTypeTitle: "How would you like your order?",
+      deliveryOption: "Delivery",
+      pickupOption: "Pick up at counter",
+      tipTitle: "Add a tip",
+      tip: "Tip",
+      discount: "Discount"
     },
     confirmation: {
       title: "Order confirmed",
@@ -118,13 +135,17 @@ const translations = {
       thanks: "We've started plating. A confirmation was sent to your email.",
       totalPaid: "Total charged",
       continue: "Continue browsing",
-      print: "Print receipt"
+      print: "Print receipt",
+      statusReceived: "Received",
+      statusPreparing: "Preparing",
+      statusOnWay: "On the way"
     },
     team: {
       eyebrow: "Behind the counter",
       title: "Our master chefs",
       subtitle: "Six people, five countries of training, one counter.",
       years: "years of experience",
+      flipHint: "Hover to read bio →",
       joinTitle: "Join the counter",
       joinText: "We take on one apprentice a year. If you can hold a knife steady and a service line calm, write to us.",
       joinButton: "Get in touch"
@@ -185,21 +206,140 @@ const translations = {
       preferences: "Preferences",
       prefTitle: "Cookie preferences",
       necessary: "Necessary",
-      necessaryDesc: "Required for the cart and language settings to work. Always on.",
+      necessaryDesc: "Required for the cart, language settings and account session to work. Always on.",
       analytics: "Analytics",
       analyticsDesc: "Helps us understand which pages are useful. Anonymous.",
       marketing: "Marketing",
       marketingDesc: "Used for the occasional newsletter. Off by default.",
       save: "Save preferences"
+    },
+    auth: {
+      loginTitle: "Sign in to your account",
+      registerTitle: "Create an account",
+      loginTab: "Sign in",
+      registerTab: "Register",
+      emailLabel: "Email address",
+      passwordLabel: "Password",
+      nameLabel: "Full name",
+      phoneLabel: "Phone (optional)",
+      confirmPasswordLabel: "Confirm password",
+      rememberMe: "Remember me",
+      loginBtn: "Sign in",
+      registerBtn: "Create account",
+      logoutBtn: "Log out",
+      myAccount: "My account",
+      loginLink: "Sign in",
+      showPassword: "Show password",
+      hidePassword: "Hide password",
+      fieldRequired: "This field is required.",
+      emailInvalid: "Enter a valid email address.",
+      passwordTooShort: "Password must be at least 8 characters.",
+      passwordNeedsLetter: "Password must include at least one letter.",
+      passwordNeedsNumber: "Password must include at least one number.",
+      passwordsMismatch: "Passwords do not match.",
+      emailTaken: "An account with that email already exists.",
+      invalidCredentials: "Email or password is incorrect.",
+      passwordStrengthWeak: "Weak",
+      passwordStrengthFair: "Fair",
+      passwordStrengthStrong: "Strong",
+      demoNote: "Demo accounts are stored only in this browser — no server involved.",
+      demoCredentials: "demo@sakurasushi.mk / Demo1234",
+      demoLabel: "Demo account",
+      loginToFavorite: "Sign in to save favourites.",
+      loginToFavoriteTitle: "Sign in required",
+      greeting: "Hi,",
+      registerSuccess: "Account created — you are now signed in.",
+      logoutSuccess: "Signed out.",
+      sessionNote: "Account data and session are stored only in your browser.",
+      orContinueGuest: "or continue as guest"
+    },
+    account: {
+      title: "My account",
+      eyebrow: "Account",
+      subtitle: "Manage your profile, orders and reservations.",
+      tabProfile: "Profile",
+      tabOrders: "Orders",
+      tabFavorites: "Favourites",
+      tabReservations: "Reservations",
+      nameLabel: "Full name",
+      phoneLabel: "Phone",
+      addressLabel: "Default delivery address",
+      cityLabel: "City",
+      saveProfile: "Save profile",
+      profileSaved: "Profile saved.",
+      currentPassword: "Current password",
+      newPassword: "New password",
+      confirmNewPassword: "Confirm new password",
+      changePasswordTitle: "Change password",
+      changePassword: "Update password",
+      passwordChanged: "Password updated.",
+      deleteAccountTitle: "Delete account",
+      deleteConfirmLabel: "Type DELETE to confirm",
+      deleteConfirmPlaceholder: "DELETE",
+      deleteWarning: "This permanently removes your account, orders and reservations from this browser.",
+      deleteBtn: "Delete my account",
+      accountDeleted: "Account deleted.",
+      emptyOrders: "No orders yet. Head to the menu to place your first order.",
+      emptyFavorites: "No favourites yet — heart a dish on the menu.",
+      emptyReservations: "No upcoming reservations.",
+      reorder: "Reorder",
+      reorderToast: "Items added to your cart.",
+      addToCart: "Add to cart",
+      orderDate: "Date",
+      orderTotal: "Total",
+      cancelReservation: "Cancel",
+      reservationCancelled: "Reservation cancelled.",
+      wrongCurrentPassword: "Current password is incorrect.",
+      deleteConfirmMismatch: "Type DELETE exactly to confirm.",
+      fieldRequired: "This field is required.",
+      passwordTooShort: "Password must be at least 8 characters.",
+      notLoggedIn: "Sign in to view your account.",
+      guests: "guests"
+    },
+    reservation: {
+      eyebrow: "The counter",
+      title: "Reserve a seat",
+      subtitle: "Eight seats at the counter. Reservations for Tue–Sun, 12:00–23:00.",
+      dateLabel: "Date",
+      timeLabel: "Time",
+      guestsLabel: "Number of guests",
+      nameLabel: "Your name",
+      emailLabel: "Email",
+      phoneLabel: "Phone",
+      notesLabel: "Notes (optional)",
+      notesPlaceholder: "Dietary requirements, special occasions…",
+      submitBtn: "Request reservation",
+      slotsAvailable: "seats available",
+      slotsFull: "Full — try another time",
+      confirmTitle: "Reservation confirmed",
+      confirmId: "Reservation ID",
+      confirmDate: "Date",
+      confirmTime: "Time",
+      confirmGuests: "Guests",
+      downloadIcs: "Add to calendar (.ics)",
+      newReservation: "Make another reservation",
+      loginPrompt: "Sign in to save this reservation to your account.",
+      mondayClosed: "We are closed on Mondays — please pick another day.",
+      pastDate: "Please select a future date.",
+      guestsRange: "Please select between 1 and 8 guests.",
+      timeRange: "Please select a time between 12:00 and 22:30.",
+      fieldRequired: "This field is required.",
+      emailInvalid: "Enter a valid email address.",
+      noSeats: "Not enough seats available at that time. Please try a different slot.",
+      guests: "guests",
+      availabilityTitle: "Availability"
     }
   },
 
   mk: {
-    nav: { home: "Почетна", menu: "Мени", team: "Нашите готвачи", blog: "Дневник", contact: "Контакт" },
+    nav: { home: "Почетна", menu: "Мени", team: "Готвачи", blog: "Дневник", contact: "Контакт", reservation: "Резервирај", themeLight: "Светла тема", themeDark: "Темна тема" },
     hero: {
       badge: "Од 2016 — Скопје",
       title: 'Рачно изработено суши, сервирано со <em>тивка прецизност</em>.',
-      subtitle: "Сакура Суши е мал шанк со осум седишта и дваесет години обука зад него. Секое парче се притиска по нарачка, никогаш однапред.",
+      titleLine1: "Рачно изработено",
+      titleLine2: "суши",
+      titleLine3: "по мрак.",
+      subtitle: "Мал шанк со осум седишта и дваесет години обука. Секое парче се притиска по нарачка, никогаш однапред.",
       ctaMenu: "Погледни го менито",
       ctaReserve: "Резервирај маса"
     },
@@ -245,7 +385,9 @@ const translations = {
       hours2: "Понеделник затворено",
       followTitle: "Следете нè",
       rights: "Сите права задржани.",
-      madeFor: "Студентски проект изработен за универзитетски курс по веб-развој."
+      madeFor: "Студентски проект изработен за универзитетски курс по веб-развој.",
+      open: "Отворено",
+      closed: "Затворено"
     },
     menuPage: {
       eyebrow: "Целосна понуда",
@@ -264,7 +406,8 @@ const translations = {
       allergensLabel: "Содржи:",
       addToCart: "Додади",
       added: "Додадено",
-      chefPick: "Избор на шефот"
+      chefPick: "Избор на шефот",
+      favourite: "Омилено"
     },
     allergens: { gluten: "Глутен", fish: "Риба", shellfish: "Школки", sesame: "Сусам", soy: "Соја", dairy: "Млечни производи", egg: "Јајце", alcohol: "Алкохол" },
     cart: {
@@ -277,7 +420,12 @@ const translations = {
       continue: "Продолжи со прегледување",
       close: "Затвори кошничка",
       freeDeliveryNote: "Бесплатна достава над $40",
-      remove: "Отстрани"
+      remove: "Отстрани",
+      discount: "Попуст",
+      promoPlaceholder: "Промо код",
+      promoApply: "Примени",
+      promoApplied: "{pct}% попуст применет ({code})",
+      promoInvalid: "Невалиден промо код."
     },
     checkout: {
       title: "Детали за достава",
@@ -297,7 +445,13 @@ const translations = {
       errorRequired: "Ова поле е задолжително.",
       errorEmail: "Внесете важечка е-пошта.",
       errorPhone: "Внесете важечки телефонски број.",
-      emptyCartNote: "Додадете производи во кошничката пред плаќање."
+      emptyCartNote: "Додадете производи во кошничката пред плаќање.",
+      deliveryTypeTitle: "Како би сакале да ја добиете нарачката?",
+      deliveryOption: "Достава",
+      pickupOption: "Подигање на шанкот",
+      tipTitle: "Додај бакшиш",
+      tip: "Бакшиш",
+      discount: "Попуст"
     },
     confirmation: {
       title: "Нарачката е потврдена",
@@ -307,13 +461,17 @@ const translations = {
       thanks: "Веќе почнавме со подготовка. Потврда е испратена на вашата е-пошта.",
       totalPaid: "Наплатен износ",
       continue: "Продолжи со прегледување",
-      print: "Испечати сметка"
+      print: "Испечати сметка",
+      statusReceived: "Примена",
+      statusPreparing: "Подготвување",
+      statusOnWay: "На пат"
     },
     team: {
       eyebrow: "Зад шанкот",
       title: "Нашите мајстор готвачи",
       subtitle: "Шест луѓе, пет земји на обука, еден шанк.",
       years: "години искуство",
+      flipHint: "Лебдете за биографијата →",
       joinTitle: "Придружи се на шанкот",
       joinText: "Примаме еден практикант годишно. Ако можете да држите нож стабилно и услуга смирена, пишете ни.",
       joinButton: "Контактирај нè"
@@ -374,12 +532,128 @@ const translations = {
       preferences: "Преференци",
       prefTitle: "Преференци за колачиња",
       necessary: "Неопходни",
-      necessaryDesc: "Потребни за да функционираат кошничката и јазичните поставки. Секогаш вклучени.",
+      necessaryDesc: "Потребни за да функционираат кошничката, јазичните поставки и сесијата на сметката. Секогаш вклучени.",
       analytics: "Аналитика",
       analyticsDesc: "Ни помага да разбереме кои страници се корисни. Анонимно.",
       marketing: "Маркетинг",
       marketingDesc: "Се користи за понекогаш билтен. Стандардно исклучено.",
       save: "Зачувај преференци"
+    },
+    auth: {
+      loginTitle: "Најавете се на вашата сметка",
+      registerTitle: "Создадете сметка",
+      loginTab: "Најава",
+      registerTab: "Регистрација",
+      emailLabel: "Е-пошта",
+      passwordLabel: "Лозинка",
+      nameLabel: "Ime i prezime",
+      phoneLabel: "Телефон (опционално)",
+      confirmPasswordLabel: "Потврди лозинка",
+      rememberMe: "Запомни ме",
+      loginBtn: "Најава",
+      registerBtn: "Создади сметка",
+      logoutBtn: "Одјава",
+      myAccount: "Мојата сметка",
+      loginLink: "Најава",
+      showPassword: "Прикажи лозинка",
+      hidePassword: "Сокриј лозинка",
+      fieldRequired: "Ова поле е задолжително.",
+      emailInvalid: "Внесете важечка е-пошта.",
+      passwordTooShort: "Лозинката мора да биде најмалку 8 знаци.",
+      passwordNeedsLetter: "Лозинката мора да содржи барем едно слово.",
+      passwordNeedsNumber: "Лозинката мора да содржи барем една цифра.",
+      passwordsMismatch: "Лозинките не се совпаѓаат.",
+      emailTaken: "Сметка со таа е-пошта веќе постои.",
+      invalidCredentials: "Е-поштата или лозинката е погрешна.",
+      passwordStrengthWeak: "Слаба",
+      passwordStrengthFair: "Средна",
+      passwordStrengthStrong: "Јака",
+      demoNote: "Демо сметките се зачувани само во овој прелистувач — нема сервер.",
+      demoCredentials: "demo@sakurasushi.mk / Demo1234",
+      demoLabel: "Демо сметка",
+      loginToFavorite: "Најавете се за да зачувате омилени.",
+      loginToFavoriteTitle: "Потребна е најава",
+      greeting: "Здраво,",
+      registerSuccess: "Сметката е создадена — сте најавени.",
+      logoutSuccess: "Одјавени сте.",
+      sessionNote: "Сметката и сесијата се зачувани само во вашиот прелистувач.",
+      orContinueGuest: "или продолжете без сметка"
+    },
+    account: {
+      title: "Мојата сметка",
+      eyebrow: "Сметка",
+      subtitle: "Управувајте со вашиот профил, нарачки и резервации.",
+      tabProfile: "Профил",
+      tabOrders: "Нарачки",
+      tabFavorites: "Омилени",
+      tabReservations: "Резервации",
+      nameLabel: "Ime i prezime",
+      phoneLabel: "Телефон",
+      addressLabel: "Стандардна адреса за достава",
+      cityLabel: "Град",
+      saveProfile: "Зачувај профил",
+      profileSaved: "Профилот е зачуван.",
+      currentPassword: "Тековна лозинка",
+      newPassword: "Нова лозинка",
+      confirmNewPassword: "Потврди нова лозинка",
+      changePasswordTitle: "Промени лозинка",
+      changePassword: "Ажурирај лозинка",
+      passwordChanged: "Лозинката е ажурирана.",
+      deleteAccountTitle: "Избриши сметка",
+      deleteConfirmLabel: "Напишете DELETE за да потврдите",
+      deleteConfirmPlaceholder: "DELETE",
+      deleteWarning: "Ова трајно ги отстранува вашата сметка, нарачки и резервации од овој прелистувач.",
+      deleteBtn: "Избриши ја мојата сметка",
+      accountDeleted: "Сметката е избришана.",
+      emptyOrders: "Сè уште нема нарачки. Одете на менито за да нарачате.",
+      emptyFavorites: "Сè уште нема омилени — стиснете срце на некое јадење.",
+      emptyReservations: "Нема претстојни резервации.",
+      reorder: "Нарачај повторно",
+      reorderToast: "Производите се додадени во кошничката.",
+      addToCart: "Додади во кошничка",
+      orderDate: "Датум",
+      orderTotal: "Вкупно",
+      cancelReservation: "Откажи",
+      reservationCancelled: "Резервацијата е откажана.",
+      wrongCurrentPassword: "Тековната лозинка е погрешна.",
+      deleteConfirmMismatch: "Напишете точно DELETE за да потврдите.",
+      fieldRequired: "Ова поле е задолжително.",
+      passwordTooShort: "Лозинката мора да биде најмалку 8 знаци.",
+      notLoggedIn: "Најавете се за да ја видите вашата сметка.",
+      guests: "гости"
+    },
+    reservation: {
+      eyebrow: "Шанкот",
+      title: "Резервирај маса",
+      subtitle: "Осум седишта на шанкот. Резервации за Вт–Нед, 12:00–23:00.",
+      dateLabel: "Датум",
+      timeLabel: "Час",
+      guestsLabel: "Број на гости",
+      nameLabel: "Вашето ime",
+      emailLabel: "Е-пошта",
+      phoneLabel: "Телефон",
+      notesLabel: "Забелешки (опционално)",
+      notesPlaceholder: "Диетални барања, посебни настани…",
+      submitBtn: "Побарај резервација",
+      slotsAvailable: "слободни места",
+      slotsFull: "Полно — пробајте друг час",
+      confirmTitle: "Резервацијата е потврдена",
+      confirmId: "Број на резервација",
+      confirmDate: "Датум",
+      confirmTime: "Час",
+      confirmGuests: "Гости",
+      downloadIcs: "Додај во календар (.ics)",
+      newReservation: "Направи нова резервација",
+      loginPrompt: "Најавете се за да ја зачувате резервацијата на вашата сметка.",
+      mondayClosed: "Во понеделник сме затворени — изберете друг ден.",
+      pastDate: "Изберете иден датум.",
+      guestsRange: "Изберете помеѓу 1 и 8 гости.",
+      timeRange: "Изберете час помеѓу 12:00 и 22:30.",
+      fieldRequired: "Ова поле е задолжително.",
+      emailInvalid: "Внесете важечка е-пошта.",
+      noSeats: "Нема доволно слободни места за тоа време. Пробајте друг термин.",
+      guests: "гости",
+      availabilityTitle: "Достапност"
     }
   }
 };
@@ -390,21 +664,27 @@ const pageTitles = {
     menu: "Menu — Sakura Sushi",
     team: "Our Chefs — Sakura Sushi",
     blog: "Journal — Sakura Sushi",
-    contact: "Contact — Sakura Sushi"
+    contact: "Contact — Sakura Sushi",
+    login: "Sign In — Sakura Sushi",
+    account: "My Account — Sakura Sushi",
+    reservation: "Reserve a Seat — Sakura Sushi"
   },
   mk: {
     home: "Сакура Суши — Рачно изработено суши во Скопје",
     menu: "Мени — Сакура Суши",
     team: "Нашите готвачи — Сакура Суши",
     blog: "Дневник — Сакура Суши",
-    contact: "Контакт — Сакура Суши"
+    contact: "Контакт — Сакура Суши",
+    login: "Најава — Сакура Суши",
+    account: "Мојата сметка — Сакура Суши",
+    reservation: "Резервација — Сакура Суши"
   }
 };
 
 const LANG_KEY = "sakura_lang";
 
 function getLang() {
-  return localStorage.getItem(LANG_KEY) === "mk" ? "mk" : "en";
+  try { return localStorage.getItem(LANG_KEY) === "mk" ? "mk" : "en"; } catch(e) { return "en"; }
 }
 
 function t(key, lang) {
@@ -457,7 +737,7 @@ function applyTranslations() {
 }
 
 function setLang(lang) {
-  localStorage.setItem(LANG_KEY, lang === "mk" ? "mk" : "en");
+  try { localStorage.setItem(LANG_KEY, lang === "mk" ? "mk" : "en"); } catch(e) {}
   applyTranslations();
 }
 

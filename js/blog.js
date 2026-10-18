@@ -26,7 +26,9 @@ function renderBlog() {
   if (featuredContainer && featured) {
     const categoryLabel = featured.category === "guide" ? t("blog.categoryGuide", lang) : t("blog.categoryNews", lang);
     featuredContainer.innerHTML = `
-      <img src="${featured.icon}" alt="${featured[lang].title}" class="w-full rounded" style="max-width:100%">
+      <div class="blog-featured-img">
+        <img src="${featured.icon}" alt="${featured[lang].title}" width="480" height="360" loading="eager">
+      </div>
       <div>
         <span class="blog-cat" style="color:${featured.category === "guide" ? "var(--matcha)" : "var(--gold)"}">${categoryLabel}</span>
         <h3 class="font-display text-2xl md:text-3xl mt-2" style="color:var(--ink)">${featured[lang].title}</h3>

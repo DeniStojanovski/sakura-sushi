@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>(function(){try{var t=localStorage.getItem('sakura_theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
+<script>document.documentElement.classList.add("js-enabled");</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In — Sakura Sushi</title>
+<meta name="description" content="Sign in or create an account at Sakura Sushi to save orders, favourites and reservations.">
+<meta name="author" content="Sakura Sushi">
+<link rel="icon" type="image/svg+xml" href="images/logo-stamp.svg">
+<meta property="og:title" content="Sign In — Sakura Sushi">
+<meta property="og:description" content="Sign in or create an account at Sakura Sushi.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0d0b0f">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Rubik:wght@400;500;600;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: '#f0e8d8',
+          inksoft: '#c8bca8',
+          washi: '#f0e8d8',
+          washideep: '#c8bca8',
+          sakura: '#ff4d8f',
+          sakurasoft: '#ff8fb8',
+          sakurawash: 'rgba(255,77,143,0.08)',
+          matcha: '#6db67a',
+          gold: '#e8a030',
+          void: '#0d0b0f',
+          charcoal: '#1a1620'
+        },
+        fontFamily: {
+          display: ['"Yeseva One"', '"Noto Serif JP"', 'serif'],
+          body: ['Rubik', '"Noto Sans"', 'sans-serif']
+        }
+      }
+    }
+  };
+</script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="font-body" data-page="login">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header id="site-header">
+  <nav class="wrap flex items-center justify-between py-4 relative" aria-label="Main navigation">
+    <a href="index.html" class="flex items-center gap-2" aria-label="Sakura Sushi — home">
+      <img src="images/logo-stamp.svg" alt="Sakura Sushi logo" class="logo-mark" width="40" height="40">
+      <span class="wordmark">Sakura <span>Sushi</span></span>
+    </a>
+
+    <button id="nav-toggle" class="" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true"><path d="M3 7H23M3 13H23M3 19H23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+
+    <ul id="nav-menu" class="items-center gap-8">
+      <li><a href="index.html" class="main-nav-link" data-page="home" data-i18n="nav.home">Home</a></li>
+      <li><a href="menu.html" class="main-nav-link" data-page="menu" data-i18n="nav.menu">Menu</a></li>
+      <li><a href="team.html" class="main-nav-link" data-page="team" data-i18n="nav.team">Our Chefs</a></li>
+      <li><a href="blog.html" class="main-nav-link" data-page="blog" data-i18n="nav.blog">Journal</a></li>
+      <li><a href="contact.html" class="main-nav-link" data-page="contact" data-i18n="nav.contact">Contact</a></li>
+      <li><a href="reservation.html" class="main-nav-link" data-page="reservation" data-i18n="nav.reservation">Reserve</a></li>
+      <li class="nav-auth-mobile"><a href="login.html" class="main-nav-link" data-i18n="auth.loginLink">Sign in</a></li>
+    </ul>
+
+    <div class="flex items-center gap-5">
+      <div id="lang-toggle" role="group" aria-label="Language selector">
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+        <span class="lang-divider" aria-hidden="true">/</span>
+        <button type="button" class="lang-btn" data-lang="mk" aria-pressed="false">МК</button>
+      </div>
+      <div id="account-menu">
+        <a href="login.html" id="login-link" class="btn btn-outline btn-sm" data-i18n="auth.loginLink">Sign in</a>
+        <div id="account-user-menu" class="account-dropdown-wrap hidden">
+          <button type="button" id="account-dropdown-btn" class="btn btn-outline btn-sm" aria-haspopup="true" aria-expanded="false" aria-controls="account-dropdown-panel">
+            <span id="account-greeting"></span>&nbsp;&#9662;
+          </button>
+          <div id="account-dropdown-panel" class="account-dropdown" hidden>
+            <a href="account.html" data-i18n="auth.myAccount">My account</a>
+            <button type="button" id="logout-btn" data-i18n="auth.logoutBtn">Log out</button>
+          </div>
+        </div>
+      </div>
+      <button id="cart-toggle" type="button" data-open-panel="cart-drawer" data-i18n-aria-label="cart.title" aria-label="Your order">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 4H6L7.2 15.4A2 2 0 0 0 9.2 17.2H18A2 2 0 0 0 20 15.4L21 8H6.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="10" cy="21" r="1.4" fill="currentColor"/>
+          <circle cx="17" cy="21" r="1.4" fill="currentColor"/>
+        </svg>
+        <span id="cart-count" class="cart-badge">0</span>
+      </button>
+      <button id="theme-toggle" type="button"
+        aria-label="Switch to light mode"
+        aria-pressed="false"
+        onclick="toggleTheme()"
+        class="theme-toggle-btn"
+        title="Toggle theme">
+        <span class="theme-icon theme-icon-moon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </span>
+        <span class="theme-icon theme-icon-sun" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- Marquee ribbon -->
+<div class="marquee-ribbon" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Hand-pressed nigiri</span><span>Fresh daily</span><span>Skopje since 2016</span>
+    <span>Sushi counter</span><span>Order online</span><span>Authentic Japanese craft</span>
+    <span>Hand-pressed nigiri</span><span>Fresh daily</span><span>Skopje since 2016</span>
+    <span>Sushi counter</span><span>Order online</span><span>Authentic Japanese craft</span>
+  </div>
+</div>
+<main id="main-content">
+
+<section class="page-hero" aria-labelledby="login-page-title">
+  <div class="wrap">
+    <p class="section-label" data-i18n="auth.loginTab">Sign in</p>
+    <h1 id="login-page-title" class="section-title font-display" data-reveal data-i18n="auth.loginTitle">Sign in to your account</h1>
+  </div>
+</section>
+
+<section class="py-12">
+  <div class="wrap" style="max-width:520px">
+  <div class="auth-card">
+
+    <!-- Demo credentials notice -->
+    <div class="demo-box" role="note">
+      <p><strong data-i18n="auth.demoLabel">Demo account</strong> &mdash;
+        <span data-i18n="auth.demoNote">Demo accounts are stored only in this browser — no server involved.</span>
+      </p>
+      <p class="mt-1">
+        <span data-i18n="auth.demoCredentials"><code>demo@sakurasushi.mk</code> / <code>Demo1234</code></span>
+      </p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="auth-tabs" role="tablist" aria-label="Authentication">
+      <button type="button" role="tab" id="tab-login" class="auth-tab-btn" aria-selected="true" aria-controls="panel-login" data-i18n="auth.loginTab">Sign in</button>
+      <button type="button" role="tab" id="tab-register" class="auth-tab-btn" aria-selected="false" aria-controls="panel-register" data-i18n="auth.registerTab">Register</button>
+    </div>
+
+    <!-- Login form -->
+    <div id="panel-login" role="tabpanel" aria-labelledby="tab-login">
+      <form id="login-form" novalidate>
+        <div class="field">
+          <label for="login-email" data-i18n="auth.emailLabel">Email address</label>
+          <input type="email" id="login-email" name="email" required autocomplete="email"
+            data-i18n-placeholder="auth.emailLabel" placeholder="Email address">
+          <div class="field-error" id="login-email-error" aria-live="polite"></div>
+        </div>
+        <div class="field">
+          <label for="login-password" data-i18n="auth.passwordLabel">Password</label>
+          <div class="flex items-center" style="position:relative">
+            <input type="password" id="login-password" name="password" required autocomplete="current-password"
+              style="padding-right:2.5rem">
+            <button type="button" id="login-show-pw" class="heart-btn" style="position:absolute;right:4px;top:50%;transform:translateY(-50%)"
+              aria-label="Show password" data-i18n-aria-label="auth.showPassword">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.7"/></svg>
+            </button>
+          </div>
+          <div class="field-error" id="login-password-error" aria-live="polite"></div>
+        </div>
+        <div class="field" style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1.5rem">
+          <input type="checkbox" id="login-remember" name="remember" style="width:auto">
+          <label for="login-remember" style="margin:0;font-weight:400;font-size:0.9rem" data-i18n="auth.rememberMe">Remember me</label>
+        </div>
+        <div class="field-error" id="login-general-error" aria-live="polite" style="margin-bottom:0.75rem"></div>
+        <button type="submit" class="btn btn-primary w-full" data-i18n="auth.loginBtn">Sign in</button>
+      </form>
+      <p class="mt-4 text-sm text-center" style="color:var(--ink-soft)">
+        <span data-i18n="auth.orContinueGuest">or continue as guest</span>
+        &mdash; <a href="menu.html" class="underline" style="color:var(--sakura)">menu</a>
+      </p>
+    </div>
+
+    <!-- Register form -->
+    <div id="panel-register" role="tabpanel" aria-labelledby="tab-register" hidden>
+      <form id="register-form" novalidate>
+        <div class="field">
+          <label for="register-name" data-i18n="auth.nameLabel">Full name</label>
+          <input type="text" id="register-name" name="name" required autocomplete="name"
+            data-i18n-placeholder="auth.nameLabel" placeholder="Full name">
+          <div class="field-error" id="register-name-error" aria-live="polite"></div>
+        </div>
+        <div class="field">
+          <label for="register-email" data-i18n="auth.emailLabel">Email address</label>
+          <input type="email" id="register-email" name="email" required autocomplete="email"
+            data-i18n-placeholder="auth.emailLabel" placeholder="Email address">
+          <div class="field-error" id="register-email-error" aria-live="polite"></div>
+        </div>
+        <div class="field">
+          <label for="register-phone" data-i18n="auth.phoneLabel">Phone (optional)</label>
+          <input type="tel" id="register-phone" name="phone" autocomplete="tel"
+            placeholder="+389 70 123 456">
+        </div>
+        <div class="field">
+          <label for="register-password" data-i18n="auth.passwordLabel">Password</label>
+          <div class="flex items-center" style="position:relative">
+            <input type="password" id="register-password" name="password" required autocomplete="new-password"
+              style="padding-right:2.5rem">
+            <button type="button" id="register-show-pw" class="heart-btn" style="position:absolute;right:4px;top:50%;transform:translateY(-50%)"
+              aria-label="Show password" data-i18n-aria-label="auth.showPassword">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.7"/></svg>
+            </button>
+          </div>
+          <!-- Password strength bar -->
+          <div class="password-strength mt-2" id="pw-strength-bar" aria-hidden="true">
+            <div class="password-strength-seg"></div>
+            <div class="password-strength-seg"></div>
+            <div class="password-strength-seg"></div>
+          </div>
+          <p class="password-strength-label" id="pw-strength-label"></p>
+          <div class="field-error" id="register-password-error" aria-live="polite"></div>
+        </div>
+        <div class="field">
+          <label for="register-confirm" data-i18n="auth.confirmPasswordLabel">Confirm password</label>
+          <div class="flex items-center" style="position:relative">
+            <input type="password" id="register-confirm" name="confirm" required autocomplete="new-password"
+              style="padding-right:2.5rem">
+            <button type="button" id="register-show-confirm" class="heart-btn" style="position:absolute;right:4px;top:50%;transform:translateY(-50%)"
+              aria-label="Show password" data-i18n-aria-label="auth.showPassword">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.7"/></svg>
+            </button>
+          </div>
+          <div class="field-error" id="register-confirm-error" aria-live="polite"></div>
+        </div>
+        <div class="field-error" id="register-general-error" aria-live="polite" style="margin-bottom:0.75rem"></div>
+        <button type="submit" class="btn btn-primary w-full" data-i18n="auth.registerBtn">Create account</button>
+      </form>
+    </div>
+
+  </div><!-- /auth-card -->
+  </div><!-- /wrap -->
+</section>
+
+</main>
+
+<footer id="site-footer">
+  <svg class="footer-wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="var(--charcoal)"/>
+  </svg>
+  <div class="footer-wordmark" aria-hidden="true">SAKURA</div>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="flex items-center gap-2 mb-3">
+          <img src="images/logo-stamp.svg" alt="Sakura Sushi logo" class="footer-logo-mark" width="34" height="34">
+          <span class="wordmark">Sakura <span>Sushi</span></span>
+        </div>
+        <p class="footer-tagline" data-i18n="footer.aboutText">A small sushi counter in Skopje, open since 2016. Eight seats, one philosophy.</p>
+        <div id="footer-open-sign" class="footer-sign mt-4">
+          <span class="footer-sign-dot" aria-hidden="true"></span>
+          <span class="footer-sign-text" data-i18n="footer.open">Open now</span>
+        </div>
+      </div>
+      <div>
+        <p class="footer-heading" data-i18n="footer.linksTitle">Explore</p>
+        <ul class="footer-links">
+          <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+          <li><a href="menu.html" data-i18n="nav.menu">Menu</a></li>
+          <li><a href="team.html" data-i18n="nav.team">Our Chefs</a></li>
+          <li><a href="blog.html" data-i18n="nav.blog">Journal</a></li>
+          <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-heading" data-i18n="footer.contactTitle">Visit</p>
+        <ul class="footer-links">
+          <li data-i18n="contact.addressValue">12 Makedonija St, 1000 Skopje</li>
+          <li><a href="tel:+38925550123">+389 2 555 0123</a></li>
+          <li><a href="mailto:hello@sakurasushi.mk">hello@sakurasushi.mk</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-heading" data-i18n="footer.hoursTitle">Hours</p>
+        <p class="footer-hours" data-i18n="footer.hours1">Tue–Sun · 12:00–23:00</p>
+        <p class="footer-hours" data-i18n="footer.hours2">Closed Mondays</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="footer-year">2026</span> Sakura Sushi. <span data-i18n="footer.rights">All rights reserved.</span></p>
+      <p data-i18n="footer.madeFor">A student project built for a university web development course.</p>
+    </div>
+  </div>
+</footer>
+
+<div id="overlay" class="overlay"></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<aside id="cart-drawer" aria-hidden="true" aria-label="Shopping cart">
+  <div class="cart-receipt-head">
+    <button type="button" data-close-panel="cart-drawer" aria-label="Close cart" class="modal-close" style="position:absolute;top:0.75rem;right:0.75rem">&times;</button>
+    <h2 class="font-display" data-i18n="cart.title">Your order</h2>
+    <p class="receipt-stamp">SAKURA SUSHI — SKOPJE</p>
+  </div>
+  <div class="receipt-dashes" aria-hidden="true"></div>
+  <div id="cart-items"></div>
+  <div class="cart-totals">
+    <div class="promo-row">
+      <input type="text" id="promo-input" placeholder="Promo code" data-i18n-placeholder="cart.promoPlaceholder" autocomplete="off" aria-label="Promo code">
+      <button type="button" id="promo-apply-btn" class="btn btn-outline btn-sm" data-i18n="cart.promoApply">Apply</button>
+    </div>
+    <p class="promo-message" id="promo-message" aria-live="polite"></p>
+    <div class="flex justify-between text-sm mb-1">
+      <span data-i18n="cart.subtotal">Subtotal</span>
+      <span id="cart-subtotal">$0.00</span>
+    </div>
+    <div class="flex justify-between text-sm mb-1" id="cart-discount-row" style="display:none!important">
+      <span data-i18n="cart.discount">Discount</span>
+      <span id="cart-discount" style="color:var(--matcha)">-$0.00</span>
+    </div>
+    <div class="flex justify-between text-sm mb-1">
+      <span data-i18n="cart.delivery">Delivery</span>
+      <span id="cart-delivery">$0.00</span>
+    </div>
+    <p class="text-xs mb-3" style="color:var(--ink-soft)" data-i18n="cart.freeDeliveryNote">Free delivery over $40</p>
+    <div class="flex justify-between font-bold text-lg mb-4">
+      <span data-i18n="cart.total">Total</span>
+      <span id="cart-total">$0.00</span>
+    </div>
+    <button type="button" id="checkout-btn" class="btn btn-primary w-full" data-open-panel="checkout-modal" data-i18n="cart.checkout" disabled>Checkout</button>
+    <button type="button" class="btn btn-outline w-full mt-2" data-close-panel="cart-drawer" data-i18n="cart.continue">Continue browsing</button>
+  </div>
+</aside>
+
+<div id="checkout-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
+  <div class="modal-panel">
+    <button type="button" class="modal-close" data-close-panel="checkout-modal" aria-label="Close checkout">&times;</button>
+    <h2 id="checkout-title" class="font-display text-2xl mb-5" data-i18n="checkout.title">Delivery details</h2>
+
+    <!-- Delivery vs Pickup -->
+    <fieldset class="field" style="margin-bottom:1rem">
+      <legend class="mb-2" style="font-weight:600;font-size:0.9rem" data-i18n="checkout.deliveryTypeTitle">How would you like your order?</legend>
+      <div class="grid grid-cols-2 gap-2">
+        <label class="radio-card">
+          <input type="radio" id="delivery-type-delivery" name="delivery_type" value="delivery" checked>
+          <span data-i18n="checkout.deliveryOption">Delivery</span>
+        </label>
+        <label class="radio-card">
+          <input type="radio" id="delivery-type-pickup" name="delivery_type" value="pickup">
+          <span data-i18n="checkout.pickupOption">Pickup at counter</span>
+        </label>
+      </div>
+    </fieldset>
+
+    <form id="checkout-form" novalidate>
+      <div class="field">
+        <label for="checkout-name" data-i18n="checkout.name">Full name</label>
+        <input type="text" id="checkout-name" name="name" required autocomplete="name">
+        <div class="field-error" id="checkout-name-error" aria-live="polite"></div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
+        <div class="field">
+          <label for="checkout-phone" data-i18n="checkout.phone">Phone number</label>
+          <input type="tel" id="checkout-phone" name="phone" required autocomplete="tel" placeholder="+389 70 123 456">
+          <div class="field-error" id="checkout-phone-error" aria-live="polite"></div>
+        </div>
+        <div class="field">
+          <label for="checkout-email" data-i18n="checkout.email">Email</label>
+          <input type="email" id="checkout-email" name="email" required autocomplete="email">
+          <div class="field-error" id="checkout-email-error" aria-live="polite"></div>
+        </div>
+      </div>
+      <div id="delivery-address-fields">
+        <div class="field">
+          <label for="checkout-address" data-i18n="checkout.address">Delivery address</label>
+          <input type="text" id="checkout-address" name="address" required autocomplete="street-address">
+          <div class="field-error" id="checkout-address-error" aria-live="polite"></div>
+        </div>
+        <div class="field">
+          <label for="checkout-city" data-i18n="checkout.city">City</label>
+          <input type="text" id="checkout-city" name="city" required autocomplete="address-level2" value="Skopje">
+          <div class="field-error" id="checkout-city-error" aria-live="polite"></div>
+        </div>
+      </div>
+      <div class="field">
+        <label for="checkout-notes" data-i18n="checkout.notes">Notes for the rider (optional)</label>
+        <textarea id="checkout-notes" name="notes" rows="2"></textarea>
+      </div>
+
+      <fieldset class="field">
+        <legend class="mb-2" data-i18n="checkout.paymentTitle">Payment method</legend>
+        <div class="grid gap-2">
+          <label class="radio-card">
+            <input type="radio" name="payment" value="cash" checked>
+            <span data-i18n="checkout.cash">Cash on delivery</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="payment" value="card">
+            <span data-i18n="checkout.card">Card on delivery</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="payment" value="wallet">
+            <span data-i18n="checkout.wallet">Mobile wallet</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- Tip selector -->
+      <fieldset class="field">
+        <legend class="mb-2" style="font-weight:600;font-size:0.9rem" data-i18n="checkout.tipTitle">Add a tip</legend>
+        <div class="flex gap-2">
+          <label class="radio-card" style="flex:1;justify-content:center">
+            <input type="radio" name="tip" value="0" checked>
+            <span>0%</span>
+          </label>
+          <label class="radio-card" style="flex:1;justify-content:center">
+            <input type="radio" name="tip" value="10">
+            <span>10%</span>
+          </label>
+          <label class="radio-card" style="flex:1;justify-content:center">
+            <input type="radio" name="tip" value="15">
+            <span>15%</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="field" style="border-top:1px solid var(--rule);padding-top:1rem">
+        <p class="font-semibold mb-2" data-i18n="checkout.summaryTitle">Order summary</p>
+        <div id="checkout-summary-items" class="text-sm"></div>
+        <div class="flex justify-between text-sm mt-2 pt-2" style="border-top:1px solid var(--rule)">
+          <span data-i18n="cart.subtotal">Subtotal</span><span id="checkout-summary-subtotal">$0.00</span>
+        </div>
+        <div class="flex justify-between text-sm" id="checkout-summary-discount-row" style="display:none">
+          <span data-i18n="cart.discount">Discount</span><span id="checkout-summary-discount" style="color:var(--matcha)">-$0.00</span>
+        </div>
+        <div class="flex justify-between text-sm">
+          <span data-i18n="cart.delivery">Delivery</span><span id="checkout-summary-delivery">$0.00</span>
+        </div>
+        <div class="flex justify-between text-sm" id="checkout-summary-tip-row" style="display:none">
+          <span data-i18n="checkout.tip">Tip</span><span id="checkout-summary-tip">$0.00</span>
+        </div>
+        <div class="flex justify-between font-bold mt-1">
+          <span data-i18n="cart.total">Total</span><span id="checkout-summary-total">$0.00</span>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-full mt-4" data-i18n="checkout.placeOrder">Place order</button>
+    </form>
+  </div>
+</div>
+
+<div id="confirmation-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="confirmation-title">
+  <div class="modal-panel text-center">
+    <button type="button" class="modal-close" data-close-panel="confirmation-modal" aria-label="Close">&times;</button>
+    <div class="stamp-wrap">
+      <img id="confirmation-stamp" src="images/logo-stamp.svg" alt="Confirmed order stamp" class="stamp-img" width="90" height="90">
+    </div>
+    <h2 id="confirmation-title" class="font-display text-2xl mb-2" data-i18n="confirmation.title">Order confirmed</h2>
+    <p class="text-sm mb-5" style="color:var(--ink-soft)" data-i18n="confirmation.thanks">We've started plating. A confirmation was sent to your email.</p>
+
+    <div class="text-left text-sm rounded p-4" style="background:var(--sakura-wash)">
+      <div class="flex justify-between mb-1">
+        <span data-i18n="confirmation.orderIdLabel">Order ID</span>
+        <span id="confirmation-order-id" class="font-bold">SKR-000000</span>
+      </div>
+      <div class="flex justify-between mb-3">
+        <span data-i18n="confirmation.eta">Estimated arrival</span>
+        <span data-i18n="confirmation.etaValue">35–45 minutes</span>
+      </div>
+      <div id="confirmation-items" class="mb-2" style="border-top:1px solid var(--rule);padding-top:0.5rem"></div>
+      <div class="flex justify-between font-bold">
+        <span data-i18n="confirmation.totalPaid">Total charged</span>
+        <span id="confirmation-total-paid">$0.00</span>
+      </div>
+    </div>
+
+    <!-- Order status progress -->
+    <div id="order-progress" class="order-progress mt-4" aria-label="Order status">
+      <div class="progress-step" id="progress-received">
+        <div class="progress-dot">&#10003;</div>
+        <span class="progress-label" data-i18n="confirmation.statusReceived">Received</span>
+      </div>
+      <div class="progress-step" id="progress-preparing">
+        <div class="progress-dot"></div>
+        <span class="progress-label" data-i18n="confirmation.statusPreparing">Preparing</span>
+      </div>
+      <div class="progress-step" id="progress-onway">
+        <div class="progress-dot"></div>
+        <span class="progress-label" data-i18n="confirmation.statusOnWay">On the way</span>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-2 mt-5">
+      <button type="button" class="btn btn-outline" id="print-receipt-btn" data-i18n="confirmation.print">Print receipt</button>
+      <button type="button" class="btn btn-primary" data-close-panel="confirmation-modal" data-i18n="confirmation.continue">Continue browsing</button>
+    </div>
+  </div>
+</div>
+
+<div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie notice">
+  <div class="wrap py-4 flex flex-col md:flex-row items-center gap-4 justify-between">
+    <p class="text-sm" data-i18n="cookies.text" style="max-width:60ch">We use a few cookies to remember your language and cart — nothing is sold to third parties.</p>
+    <div class="flex gap-3 flex-shrink-0">
+      <button type="button" id="cookie-preferences-btn" class="btn btn-outline-light btn-sm" data-i18n="cookies.preferences">Preferences</button>
+      <button type="button" id="cookie-accept" class="btn btn-sakura btn-sm" data-i18n="cookies.accept">Accept all</button>
+    </div>
+  </div>
+</div>
+
+<div id="cookie-preferences-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="cookie-pref-title">
+  <div class="modal-panel">
+    <button type="button" class="modal-close" data-close-panel="cookie-preferences-modal" aria-label="Close">&times;</button>
+    <h2 id="cookie-pref-title" class="font-display text-2xl mb-5" data-i18n="cookies.prefTitle">Cookie preferences</h2>
+    <div class="mb-4 pb-4" style="border-bottom:1px solid var(--rule)">
+      <div class="flex justify-between items-center">
+        <span class="font-semibold" data-i18n="cookies.necessary">Necessary</span>
+        <input type="checkbox" checked disabled aria-label="Necessary cookies, always on">
+      </div>
+      <p class="text-xs mt-1" style="color:var(--ink-soft)" data-i18n="cookies.necessaryDesc">Required for the cart and language settings to work. Always on.</p>
+    </div>
+    <div class="mb-4 pb-4" style="border-bottom:1px solid var(--rule)">
+      <div class="flex justify-between items-center">
+        <span class="font-semibold" data-i18n="cookies.analytics">Analytics</span>
+        <input type="checkbox" id="cookie-analytics" aria-label="Analytics cookies">
+      </div>
+      <p class="text-xs mt-1" style="color:var(--ink-soft)" data-i18n="cookies.analyticsDesc">Helps us understand which pages are useful. Anonymous.</p>
+    </div>
+    <div class="mb-5">
+      <div class="flex justify-between items-center">
+        <span class="font-semibold" data-i18n="cookies.marketing">Marketing</span>
+        <input type="checkbox" id="cookie-marketing" aria-label="Marketing cookies">
+      </div>
+      <p class="text-xs mt-1" style="color:var(--ink-soft)" data-i18n="cookies.marketingDesc">Used for the occasional newsletter. Off by default.</p>
+    </div>
+    <button type="button" id="cookie-save-preferences" class="btn btn-primary w-full" data-i18n="cookies.save">Save preferences</button>
+  </div>
+</div>
+<script src="js/translations.js"></script>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/login.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/theme.js"></script>
+<script>document.getElementById("footer-year").textContent = new Date().getFullYear();</script>
+</body>
+</html>

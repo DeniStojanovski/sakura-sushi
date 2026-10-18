@@ -25,12 +25,16 @@ function buildMenuItemRow(item, lang) {
     ? `<span class="veg-dot" style="color:var(--matcha)">${t("menuPage.filterVeg", lang)}</span>`
     : "";
   const spicyDot = item.spicy
-    ? `<span class="spicy-dot ml-3" style="color:#b3402c">${t("menuPage.filterSpicy", lang)}</span>`
+    ? `<span class="spicy-dot ml-3" style="color:var(--torii)">${t("menuPage.filterSpicy", lang)}</span>`
     : "";
   const chefPickHtml = item.chefPick
     ? `<span class="chef-pick-tag">${t("menuPage.chefPick", lang)}</span>`
     : "";
   const dietRow = dietDot || spicyDot ? `<div class="mt-1 text-xs">${dietDot}${spicyDot}</div>` : "";
+
+  const isFav = (typeof authGetCurrentUser === 'function' && typeof authGetFavorites === 'function')
+    ? authGetFavorites((authGetCurrentUser() || {}).id || '').includes(item.id)
+    : false;
 
   row.innerHTML = `
     <img src="${item.icon}" alt="${item[lang].name}" class="menu-item-icon" width="56" height="56" loading="lazy">
@@ -54,6 +58,10 @@ function buildMenuItemRow(item, lang) {
         <button type="button" class="btn btn-primary btn-sm" data-add-to-cart="${item.id}"
           aria-label="${t("menuPage.addToCart", lang)} ${item[lang].name}">
           ${t("menuPage.addToCart", lang)}
+        </button>
+        <button type="button" class="heart-btn" data-fav-toggle="${item.id}"
+          aria-pressed="${isFav}" aria-label="${t("menuPage.favourite", lang)} ${item[lang].name}">
+          ${isFav ? '&#9829;' : '&#9825;'}
         </button>
       </div>
     </div>
@@ -171,6 +179,24 @@ document.addEventListener("DOMContentLoaded", () => {
       showToast(`${t("menuPage.added", lang)}: ${item[lang].name}`);
       localQty[id] = 1;
       updateQtyDisplay(id);
+    }
+
+    const favBtn = e.target.closest("[data-fav-toggle]");
+    if (favBtn) {
+      const id = favBtn.getAttribute("data-fav-toggle");
+      const lang = getLang();
+      if (typeof authGetCurrentUser !== 'function' || !authGetCurrentUser()) {
+        // Not logged in — redirect to login with ?favorite=id&next=menu.html
+        showToast(t("account.loginToFavorite", lang));
+        setTimeout(() => {
+          window.location.href = `login.html?next=menu.html&favorite=${encodeURIComponent(id)}`;
+        }, 1200);
+        return;
+      }
+      const user = authGetCurrentUser();
+      const nowFav = typeof authToggleFavorite === 'function' && authToggleFavorite(user.id, id);
+      favBtn.setAttribute("aria-pressed", String(nowFav));
+      favBtn.innerHTML = nowFav ? '&#9829;' : '&#9825;';
     }
   });
 
