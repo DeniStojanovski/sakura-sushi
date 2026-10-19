@@ -9,7 +9,6 @@ function renderFeaturedMenu() {
   const container = document.getElementById("featured-menu-grid");
   if (!container) return;
 
-  container.className = 'grid sm:grid-cols-2 lg:grid-cols-4 gap-6';
   container.innerHTML = FEATURED_MENU_IDS.map((id, i) => {
     const item = findMenuItem(id);
     if (!item) return "";
@@ -19,7 +18,7 @@ function renderFeaturedMenu() {
       ${item.chefPick ? `<span class="chef-pick-tag" style="display:inline-block;margin-bottom:0.5rem">${t("menuPage.chefPick", lang)}</span>` : ''}
       <p class="dish-card-name">${item[lang].name}</p>
       <p class="dish-card-desc">${item[lang].desc}</p>
-      <div class="flex items-center justify-between gap-2">
+      <div class="dish-card-foot flex items-center justify-between gap-2">
         <span class="dish-card-price">${formatPrice(item.price)}</span>
         <button type="button" class="btn btn-primary btn-sm" data-featured-add="${item.id}"
           aria-label="${t("menuPage.addToCart", lang)} ${item[lang].name}">${t("menuPage.addToCart", lang)}</button>
